@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Etch-a-Sketch</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <main>
+            <h1>Etch a Sketch</h1>
+            <div class="tools">
+                <div class="tools-size">
+                    <datalist id="markers">
+                        <option value="0"></option>
+                        <option value="25"></option>
+                        <option value="50"></option>
+                        <option value="75"></option>
+                        <option value="100"></option>
+                    </datalist>
+        
+                    <label for="size" id="display-size"></label>
+                    <input type="range" id="size" name="size" min="1" max="100" value="16" list="markers"/>
+                </div>
+                <div class="tools-color">
+                    <label for="color">Select color: </label>
+                    <input type="color" id="color" name="color" value="#d2691e"/>
+                </div>
+                <div class="tools-rainbow">
+                    <label for="rainbow" id="rainbow-btn">Rainbow</label>
+                    <input type="checkbox" id="rainbow" name="rainbow"/>
+                </div>
+                <div class="tools-clear">
+                    <button id="clear">Clear drawing</button>
+                </div>
+            </div>
+            <div class="container"></div>
+        </main>
+        <script src="script.js" defer></script>
+    </body>
+</html>
