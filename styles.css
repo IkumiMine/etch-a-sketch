@@ -10,6 +10,7 @@
 main {
     max-width: 80%;
     margin: 0 auto;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 h1 {
@@ -42,6 +43,10 @@ h1 {
 
 .tools-rainbow input {
     display: none;
+}
+
+#rainbow-btn.active {
+    background-color: orange;
 }
 
 .tools-clear button {

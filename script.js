@@ -9,7 +9,11 @@ const clearBtn = document.querySelector('#clear');
 const container = document.querySelector(".container");
 const gridElement = document.createElement('div');
 gridElement.classList.add('grids');
+
 let grids;
+let isPainting = false;
+let isRainbow = false;
+
 
 //Initialize setting on the first loading
 displaySize.textContent = `Grid size: ${sizeRange.value}`;
@@ -24,7 +28,7 @@ sizeRange.addEventListener("change", () => {
     changeBgColor();
 })
 
-rainbowBtn.addEventListener('click', getRandomColor);
+rainbowBtn.addEventListener('click', toggleRainbow);
 
 clearBtn.addEventListener('click', clearDrawing);
 
@@ -50,7 +54,6 @@ function removeAllGrids() {
 
 function changeBgColor() {
     grids = document.querySelectorAll(".grids");
-    let isPainting = false;
     
     grids.forEach(grid => grid.addEventListener('mousedown',() => {
         isPainting = true;
@@ -64,8 +67,15 @@ function changeBgColor() {
         if(!isPainting){
             return;
         }
+
         grid.style.backgroundColor = '#fff';
-        grid.style.backgroundColor = selectColor.value;
+
+        if(isRainbow) {
+            randomColor = getRandomRgbColor();
+            grid.style.backgroundColor = `rgb(${randomColor[0]},${randomColor[1]},${randomColor[2]})`;
+        } else {
+            grid.style.backgroundColor = selectColor.value;
+        }
     }))
 }
 
@@ -73,6 +83,23 @@ function clearDrawing() {
     grids.forEach(grid => grid.style.backgroundColor = '#fff');
 }
 
-function getRandomColor() {
-    console.log('each interaction should randomize the square’s RGB value entirely');
+function getRandomInteger(max) {
+    return Math.floor(Math.random()*(max+1));
+}
+
+function getRandomRgbColor() {
+    let r = getRandomInteger(255);
+    let g = getRandomInteger(255);
+    let b = getRandomInteger(255);
+    return [r,g,b];
+}
+
+function toggleRainbow() {
+    if(!isRainbow) {
+        isRainbow = true;
+        rainbowBtn.classList.add('active');
+    } else {
+        isRainbow = false;
+        rainbowBtn.classList.remove('active');
+    }
 }
